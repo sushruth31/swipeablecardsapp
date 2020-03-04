@@ -49,4 +49,4 @@ Create a new github project and share your work with us
 ![alt text] [sponge]
 
 [design]: https://github.com/CardioLogs/card-triage/raw/master/images/design.png 
-[sponge]: https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif
+[sponge]: https://github.com/CardioLogs/card-triage/raw/master/images/sponge.gif
