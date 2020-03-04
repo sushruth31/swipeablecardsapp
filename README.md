@@ -41,12 +41,16 @@ Go ahead with new suggestions for a V2.
 Here is a simple instructions on how to setup your local server for the project
 
 
-
 ## Share your project
 Create a new github project and share your work with us
 
 ## Good Luck and HAVE FUN!!
-![alt text] [sponge]
+![alt text][sponge]
 
-[design]: https://github.com/CardioLogs/card-triage/raw/master/images/design.png 
+
+
+[design]: https://github.com/CardioLogs/card-triage/raw/master/images/design.png
+
 [sponge]: https://github.com/CardioLogs/card-triage/raw/master/images/sponge.gif
+
+
