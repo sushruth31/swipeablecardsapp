@@ -1,6 +1,6 @@
 [
   {
-    "arrhythmia": [
+    "arrhythmias": [
       "AFib",
       "AV Block",
       "Pause",
@@ -13,7 +13,7 @@
     "status": "PENDING"
   },
   {
-    "arrhythmia": [
+    "arrhythmias": [
       "Pause"
     ],
     "created_date": "2020-01-01T00:12:21+0000",
@@ -22,7 +22,7 @@
     "status": "COMPLETED"
   },
   {
-    "arrhythmia": [
+    "arrhythmias": [
       "AFib",
       "Pause"
     ],
@@ -32,7 +32,7 @@
     "status": "DONE"
   },
   {
-    "arrhythmia": [
+    "arrhythmias": [
       "PVC",
       "PSVC",
       "AFib"
@@ -43,7 +43,7 @@
     "status": "COMPLETED"
   },
   {
-    "arrhythmia": [
+    "arrhythmias": [
       "AV Block",
       "PVC"
     ],
@@ -53,7 +53,7 @@
     "status": "PENDING"
   },
   {
-    "arrhythmia": [
+    "arrhythmias": [
       "Pause",
       "PVC",
       "PSVC"
