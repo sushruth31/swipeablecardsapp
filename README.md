@@ -18,16 +18,16 @@ You can chose **any** of the following frameworks but we expect to have a clean 
 Setup your project with one of our project CLI recommendations
 - Angular [cli](https://cli.angular.io/)
 - React [reactApp](https://create-react-app.dev/docs/getting-started/)
-- VueJS [vuecli](https://cli.vuejs.org/) 
+- VueJS [vuecli](https://cli.vuejs.org/)
 
 Of course, you are free to use any of the CSS naming convention/methodology, or any testing libraries other than the one provided by the CLI.
 
 ## Design specs
-Because no feature is develop without a nice pseudo-design here is a rapid sketch of how we think we can display the list..  
+Because no feature is develop without a nice pseudo-design here is a rapid sketch of how we think we can display the list..
 ![alt text][design]
 
  > Go, let express your creativity !!
- 
+
 ## Bonus points
 - UI/UX design
 - Offline card filtering
@@ -40,6 +40,14 @@ Go ahead with new suggestions for a V2.
 ## Server
 Here is a simple instructions on how to setup your local server for the project
 
+1. first install the node dependencies
+    `npm install`
+
+2. run the local server
+    `npm run start`
+
+3. everything is setup you can now access the list of cards with the following url:
+    `GET http://localhost:3000/cards`
 
 
 ## Share your project
@@ -48,5 +56,5 @@ Create a new github project and share your work with us
 ## Good Luck and HAVE FUN!!
 ![alt text] [sponge]
 
-[design]: https://github.com/CardioLogs/card-triage/raw/master/images/design.png 
+[design]: https://github.com/CardioLogs/card-triage/raw/master/images/design.png
 [sponge]: https://github.com/CardioLogs/card-triage/raw/master/images/sponge.gif
