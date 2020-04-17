@@ -19,7 +19,7 @@
     "created_date": "2020-01-01T00:12:21+0000",
     "id": 1,
     "patient_name": "Bill",
-    "status": "COMPLETED"
+    "status": "REJECTED"
   },
   {
     "arrhythmias": [
@@ -40,7 +40,7 @@
     "created_date": "2019-01-23T00:18:34+0000",
     "id": 3,
     "patient_name": "Flora",
-    "status": "COMPLETED"
+    "status": "REJECTED"
   },
   {
     "arrhythmias": [
