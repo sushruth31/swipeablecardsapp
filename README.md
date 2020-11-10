@@ -55,7 +55,7 @@ Here is a simple instructions on how to setup your local server for the project
 
 ## Share your project
 Create a new github project and share your work with us
-If you are using a private repository add us as a collaborator ('buenjybar')
+If you are using a private repository on GitHbu add us as a collaborator (`buenjybar`, `baptooo` and `ArthurFoucher`) so we can read your code :{
 
 ## Good Luck and HAVE FUN!!
 ![alt text][sponge]
