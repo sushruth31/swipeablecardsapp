@@ -26,7 +26,7 @@ Setup your project with one of our project CLI recommendations
 Of course, you are free to use any of the **CSS naming** convention / methodology, or any **testing** libraries other than the one provided by the CLI.
 
 ## Design specs
-Because no feature is develop without a nice pseudo-design here is a quick sketch of how we think we can display the list. 
+Because no feature is developed without a nice pseudo-design here is a quick sketch of how we think we can display the list. 
 ![alt text][design]
 
  > Let's Go, Let's express your **creativity** !!
@@ -55,7 +55,7 @@ Here is a simple instructions on how to setup your local server for the project
 
 ## Share your project
 Create a new github project and share your work with us
-If you are using a private repository on GitHbu add us as a collaborator (`buenjybar`, `baptooo` and `ArthurFoucher`) so we can read your code :{
+If you are using a private repository on GitHub add us as a collaborator (`buenjybar`, `baptooo` and `ArthurFoucher`) so we can read your code :{
 
 ## Good Luck and HAVE FUN!!
 ![alt text][sponge]
