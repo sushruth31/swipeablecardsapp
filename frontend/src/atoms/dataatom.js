@@ -1,4 +1,4 @@
-import { selector, atom } from "recoil";
+import { atom } from "recoil";
 import { createAsset } from "use-asset";
 import axios from "axios";
 
@@ -10,27 +10,16 @@ async function fetchData(url) {
   return data;
 }
 
-const asset = createAsset(async url => {
+export const asset = createAsset(async url => {
   return await fetchData(url);
 });
 
-export const doneIDs = atom({
-  key: "doneIDs",
-  default: [2],
+export const todosAtom = atom({
+  key: "todos",
+  default: [],
 });
 
-export const dataAtom = selector({
-  key: "data",
-  get: ({ get }) => {
-    const data = asset.read("http://localhost:8080/cards");
-    const doneIds = get(doneIDs);
-    return data.map(el => (doneIds.some(id => id === el.id) ? { ...el, status: "DONE" } : el));
-  },
-});
-
-export const doneDataAtom = selector({
-  key: "doneData",
-  get: ({ get }) => {
-    return get(dataAtom).filter(({ status }) => status === "DONE");
-  },
+export const doneAtom = atom({
+  key: "done",
+  default: [],
 });

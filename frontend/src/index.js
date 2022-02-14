@@ -7,12 +7,12 @@ import { ErrorBoundary } from "react-error-boundary";
 import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
-  <ErrorBoundary fallback={<div>Error loading data</div>}>
-    <Suspense fallback={<LinearProgress />}>
-      <RecoilRoot>
+  <RecoilRoot>
+    <ErrorBoundary fallback={<div>Error loading data</div>}>
+      <Suspense fallback={<LinearProgress />}>
         <App />
-      </RecoilRoot>
-    </Suspense>
-  </ErrorBoundary>,
+      </Suspense>
+    </ErrorBoundary>
+  </RecoilRoot>,
   document.getElementById("root")
 );
