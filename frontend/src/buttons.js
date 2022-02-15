@@ -11,7 +11,7 @@ export default function () {
   const todosCopy = [...todos];
   const doneCopy = [...done];
   const [_, onSwipeRight] = useSwipes(todosCopy.pop());
-  const [onSwipeLeft, __] = useSwipes(doneCopy.pop());
+  const [onSwipeLeft] = useSwipes(doneCopy.pop());
 
   return (
     <div style={{ flex: "0.1" }} className="flex h-screen flex-col items-center justify-center">
