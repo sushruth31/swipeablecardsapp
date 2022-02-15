@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TinderCard from "react-tinder-card";
 import { ListItemText } from "@mui/material";
 import { Box, height } from "@mui/system";
 import moment from "moment";
 import useSwipes from "./useSwipes";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRecoilValue } from "recoil";
+import { searchAtom } from "./atoms/dataatom";
 
-export default function ({ patient_name, arrhythmias, created_date, todoOrDone, id }) {
+export default function ({ patient_name, arrhythmias, created_date, todoOrDone, id, status }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [onSwipeLeft, onSwipeRight] = useSwipes({ patient_name, arrhythmias, created_date, id });
+  const searchText = useRecoilValue(searchAtom);
+
+  useEffect(() => {
+    if (searchText) setIsFlipped(false);
+  }, [searchText]);
 
   function PatientDetails() {
     return (
@@ -58,6 +65,7 @@ export default function ({ patient_name, arrhythmias, created_date, todoOrDone, 
   return (
     <AnimatePresence>
       <TinderCard
+        preventSwipe={todoOrDone === "todo" ? ["left"] : ["right"]}
         className="absolute mb-[50px] flex h-80 w-80 items-center justify-center rounded-xl bg-white"
         onSwipe={todoOrDone === "todo" ? onSwipeRight : onSwipeLeft}>
         <motion.div key={id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -70,7 +78,10 @@ export default function ({ patient_name, arrhythmias, created_date, todoOrDone, 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="">{`Patient Name: ${patient_name}`}</motion.div>
+              className="flex flex-col">
+              <div className="mb-3">{`Patient Name: ${patient_name}`}</div>
+              <div>{`Status: ${status}`}</div>
+            </motion.div>
           ) : (
             <PatientDetails />
           )}
