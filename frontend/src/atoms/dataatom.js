@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import { createAsset } from "use-asset";
 import axios from "axios";
 
@@ -22,4 +22,25 @@ export const todosAtom = atom({
 export const doneAtom = atom({
   key: "done",
   default: [],
+});
+
+export const searchAtom = atom({
+  key: "searchText",
+  default: "",
+});
+
+export const filteredTodos = selector({
+  key: "filteredtodos",
+  get: ({ get }) => {
+    const data = get(todosAtom);
+    const searchText = get(searchAtom);
+    const done = get(doneAtom);
+    return data.filter(
+      ({ patient_name, arrhythmias, status }) =>
+        (patient_name.toLowerCase().includes(searchText.toLowerCase()) ||
+          arrhythmias.some(el => el.toLowerCase().includes(searchText.toLowerCase()))) &&
+        !done.map(el => el.patient_name).includes(patient_name) &&
+        status !== "DONE"
+    );
+  },
 });
