@@ -22,8 +22,8 @@ export default function ({ todoOrDone }) {
   return (
     <div style={{ flex: "0.45" }} className={todoOrDone === "todo" ? className1 : className2}>
       <div className="-mt-[600px] text-xl font-bold text-black">{todoOrDone === "todo" ? "To Do" : "Done"}</div>
-      {!dataToMap || dataToMap.length > 0 ? (
-        dataToMap.map((obj, i) => {
+      {dataToMap.length > 0 ? (
+        dataToMap.map(obj => {
           return <Card topCard todoOrDone={todoOrDone} key={obj.id} {...obj} />;
         })
       ) : (
