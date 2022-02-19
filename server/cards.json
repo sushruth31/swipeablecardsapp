@@ -1,66 +1,58 @@
 [
   {
-    "arrhythmias": [
-      "AFib",
-      "AV Block",
-      "Pause",
-      "PSVC",
-      "PVC"
-    ],
-    "created_date": "2020-03-10T13:14:59+0000",
     "id": 0,
-    "patient_name": "Bob",
+    "title": "Rotate the staging API credentials",
+    "tags": ["security", "infra", "chore"],
+    "createdAt": "2022-02-14T09:14:59+0000",
     "status": "PENDING"
   },
   {
-    "arrhythmias": [
-      "Pause"
-    ],
-    "created_date": "2020-01-01T00:12:21+0000",
     "id": 1,
-    "patient_name": "Bill",
-    "status": "REJECTED"
+    "title": "Fix the flaky checkout integration test",
+    "tags": ["testing", "ci"],
+    "createdAt": "2022-02-11T16:12:21+0000",
+    "status": "BLOCKED"
   },
   {
-    "arrhythmias": [
-      "AFib",
-      "Pause"
-    ],
-    "created_date": "2019-12-31T00:11:14+0000",
     "id": 2,
-    "patient_name": "Elsa",
+    "title": "Add pagination to the audit log endpoint",
+    "tags": ["api", "performance"],
+    "createdAt": "2022-01-28T11:11:14+0000",
     "status": "DONE"
   },
   {
-    "arrhythmias": [
-      "PVC",
-      "PSVC",
-      "AFib"
-    ],
-    "created_date": "2019-01-23T00:18:34+0000",
     "id": 3,
-    "patient_name": "Flora",
-    "status": "REJECTED"
+    "title": "Document the deployment runbook",
+    "tags": ["docs"],
+    "createdAt": "2022-01-23T14:18:34+0000",
+    "status": "BLOCKED"
   },
   {
-    "arrhythmias": [
-      "AV Block",
-      "PVC"
-    ],
-    "created_date": "2019-02-21T00:08:58+0000",
     "id": 4,
-    "patient_name": "Marc",
+    "title": "Cache the dashboard aggregate query",
+    "tags": ["performance", "database"],
+    "createdAt": "2022-02-08T10:08:58+0000",
     "status": "PENDING"
   },
   {
-    "arrhythmias": [
-      "Pause",
-      "PVC",
-      "PSVC"
-    ],
-    "created_date": "2019-02-21T00:09:32+0000",
     "id": 5,
-    "patient_name": "John",
+    "title": "Upgrade the build image to Node 16",
+    "tags": ["ci", "chore"],
+    "createdAt": "2022-02-09T18:09:32+0000",
     "status": "PENDING"
+  },
+  {
+    "id": 6,
+    "title": "Trace the intermittent websocket drop",
+    "tags": ["bug", "networking"],
+    "createdAt": "2022-02-15T08:41:02+0000",
+    "status": "PENDING"
+  },
+  {
+    "id": 7,
+    "title": "Retire the legacy export worker",
+    "tags": ["cleanup", "infra"],
+    "createdAt": "2022-02-02T13:27:45+0000",
+    "status": "DONE"
   }
 ]
