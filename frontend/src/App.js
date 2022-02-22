@@ -1,19 +1,19 @@
-import "./App.css";
-import NavBar from "./navbar";
-import TodoList from "./todo";
-import Buttons from "./buttons";
+import { Buttons } from "./components/Buttons";
+import { CardColumn } from "./components/CardColumn";
+import { NavBar } from "./components/NavBar";
+import { useBoardData } from "./state/useBoardData";
 
-function App() {
+export function App() {
+  useBoardData();
+
   return (
     <>
       <NavBar />
-      <div className="flex h-screen w-screen items-center justify-between bg-gray-200">
-        <TodoList todoOrDone={"todo"} />
+      <main className="flex h-screen w-screen items-center justify-between bg-gray-200">
+        <CardColumn column="pending" />
         <Buttons />
-        <TodoList todoOrDone={"done"} />
-      </div>
+        <CardColumn column="done" />
+      </main>
     </>
   );
 }
-
-export default App;

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Card Triage",
+  "name": "Swipeable card triage board",
   "icons": [
     {
       "src": "favicon.ico",
