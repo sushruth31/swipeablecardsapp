@@ -1,2 +1,17 @@
-.idea
-node_modules
+node_modules/
+
+# build output
+build/
+dist/
+coverage/
+
+# local configuration
+.env
+.env.local
+.env.*.local
+
+# editors and OS cruft
+.idea/
+.vscode/
+.DS_Store
+*.log

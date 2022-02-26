@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
+
+      - name: Install api dependencies
+        run: npm ci
+
+      - name: Install web dependencies
+        run: npm ci --prefix frontend
+
+      - name: Lint
+        run: npm run lint --prefix frontend
+
+      - name: Test
+        run: npm test --prefix frontend
+
+      - name: Build
+        run: npm run build --prefix frontend
+        env:
+          # The build only needs the variable to exist; nothing here calls the API.
+          REACT_APP_API_URL: http://localhost:8080
