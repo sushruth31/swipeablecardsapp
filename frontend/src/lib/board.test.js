@@ -64,18 +64,13 @@ describe("matchesQuery", () => {
 });
 
 describe("visiblePending", () => {
-  it("hides a card once its id is in the done column", () => {
-    const state = board([card(1), card(2)], [card(1, { status: DONE })]);
-    expect(visiblePending(state, "").map(({ id }) => id)).toEqual([2]);
+  it("reads only the pending column, never subtracting the done one", () => {
+    const state = board([card(1), card(2)], [card(3, { status: DONE })]);
+    expect(visiblePending(state, "").map(({ id }) => id)).toEqual([1, 2]);
   });
 
-  it("keeps a pending card that merely shares a title with a completed one", () => {
-    const state = board([card(2, { title: "Deploy" })], [card(1, { title: "Deploy", status: DONE })]);
-    expect(visiblePending(state, "").map(({ id }) => id)).toEqual([2]);
-  });
-
-  it("applies the search filter on top of the completion filter", () => {
-    const state = board([card(1, { title: "Deploy" }), card(2, { title: "Rollback" })], []);
+  it("applies the search filter to the pending column", () => {
+    const state = board([card(1, { title: "Deploy" }), card(2, { title: "Rollback" })]);
     expect(visiblePending(state, "roll").map(({ id }) => id)).toEqual([2]);
   });
 });
@@ -104,6 +99,12 @@ describe("completeCard", () => {
     completeCard(state, 1);
     expect(pending.map(({ id }) => id)).toEqual([1]);
     expect(state.done).toEqual([]);
+  });
+
+  it("completes the card with the matching id, not the one sharing its title", () => {
+    const next = completeCard(board([card(1, { title: "Deploy" }), card(2, { title: "Deploy" })]), 2);
+    expect(next.pending.map(({ id }) => id)).toEqual([1]);
+    expect(next.done.map(({ id }) => id)).toEqual([2]);
   });
 
   it("treats id 0 as a real card rather than a falsy miss", () => {

@@ -26,14 +26,13 @@ export const matchesQuery = ({ title, tags }, query) => {
 };
 
 /**
- * Cards the pending column should render: not already completed, matching search.
- * Completion is keyed on `id` — titles are display text and may repeat.
+ * Cards the pending column should render. Search is the only filter here:
+ * `move` already removes a card from its source column, so the two columns are
+ * disjoint by construction and a completion filter would never fire.
  */
-export const visiblePending = ({ pending, done }, query) => {
-  const completed = new Set(done.map(({ id }) => id));
-  return pending.filter(card => !completed.has(card.id) && matchesQuery(card, query));
-};
+export const visiblePending = ({ pending }, query) => pending.filter(card => matchesQuery(card, query));
 
+/** Single id-keyed transfer. Titles are display text and may repeat, so never key on them. */
 const move = (board, from, to, id, status) => {
   const card = board[from].find(candidate => candidate.id === id);
   if (!card) return board;
