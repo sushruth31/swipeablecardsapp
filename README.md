@@ -1,9 +1,10 @@
 # Card Triage — a swipeable two-column card board
 
 A triage board for a queue of cards: swipe right to complete one, swipe left to send a
-completed card back for another look. The interesting part is not the animation — it is
-keeping the board's rules out of the components, so a gesture, a button click and a test
-all drive the same pure state transition.
+completed card back for another look. It started from a public take-home scaffold — a
+json-server mock and a flat card list — and is rebuilt from the state layer up. The
+interesting part is not the animation: it is keeping the board's rules out of the
+components, so a gesture, a button click and a test all drive the same pure transition.
 
 [![CI](https://github.com/sushruth31/swipeablecardsapp/actions/workflows/ci.yml/badge.svg)](https://github.com/sushruth31/swipeablecardsapp/actions/workflows/ci.yml)
 
@@ -66,15 +67,20 @@ decides what a swipe means.
   that could interleave. `useSwipes` is three lines and uses the updater form of the
   setter deliberately: a fast swipe can fire while a previous transition is still queued,
   and reading the atom directly would apply the second move to a stale board.
-- **Identity is the id, never the title.** The visible-pending filter originally excluded
-  a card by comparing its display name against the done column, so two cards that happened
-  to share a title disappeared together. It now diffs on `id` through a `Set`, which also
-  drops the filter from O(P·D) to O(P + D) per keystroke.
-- **A component declared inside a component is a remount.** The card's detail panel used to
-  be defined in the body of the card component, so React saw a brand-new component *type*
-  on every render and threw away the subtree — the expand animation restarted whenever any
-  parent state changed. Hoisting it to module scope fixed it; the same reasoning is why the
-  framer-motion variants are module constants.
+- **Identity is the id, never the title.** The original board matched cards by display
+  name, so completing one of two cards that happened to share a title moved both. Every
+  transition now keys on `id` inside a single `move` helper — and the cross-column filter
+  the old code needed went away with it. `move` removes the card from the source column
+  before appending it to the target, so `pending` and `done` are disjoint by construction
+  and the pending view only has to apply the search query: O(P) per keystroke, no `Set`.
+- **Where a framer-motion `AnimatePresence` sits decides whether `exit` runs at all.** The
+  card's detail panel used to be declared in the body of the card component, so React saw a
+  brand-new component *type* every render and threw the subtree away — the expand animation
+  restarted whenever any parent state changed. The same class of bug put the empty-column
+  `AnimatePresence` *inside* the placeholder it was animating, where it unmounted along with
+  its only child and the `exit` variant could never fire. Both now live one level up:
+  variants are module constants, and `AnimatePresence` sits outside the branch it animates
+  rather than inside one arm of it.
 - **Derive once, in a selector.** Search filtering lives in a Recoil selector rather than in
   each column, so the columns and the button bar all read the same memoised result and it is
   recomputed only when the board or the query actually changes.
@@ -84,7 +90,7 @@ decides what a swipe means.
   card off screen without a matching state transition behind it.
 - **Bundle cost of a date string.** `moment` was pulled in for one "3 days ago" label.
   Replacing it with a 25-line `Intl.RelativeTimeFormat` helper (plus dropping two unused MUI
-  wrappers) took the gzipped main bundle from 168.8 kB to 149.5 kB. The helper rounds the
+  wrappers) took the gzipped main bundle from 168.8 kB to 149.4 kB. The helper rounds the
   *magnitude* and reapplies the sign, because `Math.round(-1.5)` is `-1` and past timestamps
   would otherwise round differently from future ones.
 
