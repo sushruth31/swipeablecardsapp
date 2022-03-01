@@ -24,6 +24,7 @@ const TAG_ANIMATION = {
 };
 
 const CARD_STYLE = "absolute mb-[50px] flex h-80 w-80 items-center justify-center rounded-xl bg-white shadow-md";
+const TOGGLE_STYLE = "absolute right-2 top-2 text-sm text-blue-600";
 
 function TagList({ tags }) {
   return (
@@ -62,40 +63,23 @@ function CardSummary({ title, status }) {
   );
 }
 
-function CardFace({ showDetails, title, status, tags, createdAt }) {
-  return (
-    <AnimatePresence initial={false}>
-      {showDetails ? (
-        <CardDetails key="details" tags={tags} createdAt={createdAt} />
-      ) : (
-        <CardSummary key="summary" title={title} status={status} />
-      )}
-    </AnimatePresence>
-  );
-}
-
-function DetailsToggle({ showDetails, onToggle }) {
-  return (
-    <button type="button" onClick={onToggle} className="absolute right-2 top-2 text-sm text-blue-600">
-      {showDetails ? "Hide details" : "View details"}
-    </button>
-  );
-}
-
 export function Card({ id, title, tags, createdAt, status, column }) {
   const [showDetails, setShowDetails] = useState(false);
   const swipe = useSwipes(id);
   const searchText = useRecoilValue(searchAtom);
-
   // Collapse on search so the stack stays uniform while results shuffle underneath.
-  useEffect(() => {
-    if (searchText) setShowDetails(false);
-  }, [searchText]);
+  useEffect(() => setShowDetails(shown => shown && !searchText), [searchText]);
 
   return (
     <TinderCard preventSwipe={LOCKED_DIRECTIONS[column]} onSwipe={swipe} className={CARD_STYLE}>
-      <DetailsToggle showDetails={showDetails} onToggle={() => setShowDetails(shown => !shown)} />
-      <CardFace showDetails={showDetails} title={title} status={status} tags={tags} createdAt={createdAt} />
+      <button type="button" onClick={() => setShowDetails(shown => !shown)} className={TOGGLE_STYLE}>
+        {showDetails ? "Hide details" : "View details"}
+      </button>
+      <AnimatePresence initial={false}>
+        {showDetails
+          ? <CardDetails key="details" tags={tags} createdAt={createdAt} />
+          : <CardSummary key="summary" title={title} status={status} />}
+      </AnimatePresence>
     </TinderCard>
   );
 }
